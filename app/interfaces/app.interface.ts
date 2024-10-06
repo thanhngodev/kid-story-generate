@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IFieldData {
   fieldName: string;
   fieldValue: string;
@@ -52,4 +53,13 @@ export interface IUserInfo {
   userName: string | null;
   userImage: string | null;
   credit: number | null;
+}
+
+export interface IUserDetailContext {
+  userDetail?: IUserInfo;
+  setUserDetail: (user: IUserInfo) => void;
+}
+
+export interface UserSelectionProps {
+  userSelection: (data: IFieldData) => void;
 }

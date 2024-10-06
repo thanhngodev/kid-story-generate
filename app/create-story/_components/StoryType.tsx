@@ -1,7 +1,8 @@
 import { OPTION_LIST } from "@/app/common/constant";
 import OptionList from "./OptionList";
+import { UserSelectionProps } from "@/app/interfaces/app.interface";
 
-const StoryType = ({ userSelection }: any) => {
+const StoryType = ({ userSelection }: UserSelectionProps) => {
   const optionList = OPTION_LIST;
 
   return (

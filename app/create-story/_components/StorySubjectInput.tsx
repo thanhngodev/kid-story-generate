@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Textarea } from "@nextui-org/input";
 import React from "react";
 

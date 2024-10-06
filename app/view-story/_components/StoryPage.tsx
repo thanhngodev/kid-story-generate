@@ -1,7 +1,9 @@
-import React from "react";
-import { MdPlayCircleFilled } from "react-icons/md";
+type StoryChapter = {
+  chapter_title?: string;
+  text?: string;
+};
 
-const StoryPage = ({ storyChapter }: any) => {
+const StoryPage = ({ storyChapter }: { storyChapter: StoryChapter }) => {
   return (
     <div className="h-full">
       <h2 className="text-xl md:text-2xl font-bold text-primary flex justify-between">

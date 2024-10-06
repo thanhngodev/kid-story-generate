@@ -14,22 +14,21 @@ const UserStoryList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    user && getUserStory();
+    const getUserStory = async () => {
+      setIsLoading(true);
+      const result = await db
+        .select()
+        .from(StoryData)
+        .where(
+          eq(StoryData.userEmail, user?.primaryEmailAddress?.emailAddress ?? "")
+        )
+        .orderBy(desc(StoryData.id));
+
+      setStoryList(result);
+      setIsLoading(false);
+    };
+    if (user) getUserStory();
   }, [user]);
-
-  const getUserStory = async () => {
-    setIsLoading(true);
-    const result = await db
-      .select()
-      .from(StoryData)
-      .where(
-        eq(StoryData.userEmail, user?.primaryEmailAddress?.emailAddress ?? "")
-      )
-      .orderBy(desc(StoryData.id));
-
-    setStoryList(result);
-    setIsLoading(false);
-  };
 
   return (
     <div>

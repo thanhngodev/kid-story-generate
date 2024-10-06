@@ -1,21 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useState } from "react";
-import StorySubjectInput from "./_components/StorySubjectInput";
-import StoryType from "./_components/StoryType";
-import AgeGroup from "./_components/AgeGroup";
-import ImageStyle from "./_components/ImageStyle";
-import { IFieldData, IFormDataType } from "../interfaces/app.interface";
-import { Button } from "@nextui-org/react";
 import { chatSession } from "@/config/GeminiAi";
 import { db } from "@/config/db";
 import { StoryData } from "@/config/schema";
-import uuid4 from "uuid4";
-import CustomLoader from "./_components/CustomLoader";
-import axios from "axios";
 import { useUser } from "@clerk/nextjs";
-import { toast } from "react-toastify";
+import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import uuid4 from "uuid4";
+import { IFieldData, IFormDataType } from "../interfaces/app.interface";
 import { getRandomImage } from "../utils/common";
+import AgeGroup from "./_components/AgeGroup";
+import CustomLoader from "./_components/CustomLoader";
+import ImageStyle from "./_components/ImageStyle";
+import StorySubjectInput from "./_components/StorySubjectInput";
+import StoryType from "./_components/StoryType";
 
 const createStoryPrompt = process.env.NEXT_PUBLIC_CREATE_STORY_PROMPT;
 

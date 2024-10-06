@@ -1,7 +1,8 @@
 import { OPTION_IMAGE_LIST } from "@/app/common/constant";
 import OptionList from "./OptionList";
+import { UserSelectionProps } from "@/app/interfaces/app.interface";
 
-const ImageStyle = ({ userSelection }: any) => {
+const ImageStyle = ({ userSelection }: UserSelectionProps) => {
   const optionImageList = OPTION_IMAGE_LIST;
 
   return (

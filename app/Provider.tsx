@@ -16,37 +16,37 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
   const { user } = useUser();
 
   useEffect(() => {
-    user && saveNewUser();
+    const saveNewUser = async () => {
+      const userResp = await db
+        .select()
+        .from(Users)
+        .where(
+          eq(Users.userEmail, user?.primaryEmailAddress?.emailAddress ?? "")
+        );
+
+      if (!userResp[0]) {
+        const result = await db
+          .insert(Users)
+          .values({
+            userEmail: user?.primaryEmailAddress?.emailAddress,
+            userImage: user?.imageUrl,
+            userName: user?.fullName,
+          })
+          .returning({
+            userEmail: Users.userEmail,
+            userName: Users.userName,
+            userImage: Users.userImage,
+            credit: Users.credit,
+          });
+
+        setUserDetail(result[0]);
+      } else {
+        setUserDetail(userResp[0]);
+      }
+    };
+    if (user) saveNewUser();
   }, [user]);
 
-  const saveNewUser = async () => {
-    const userResp = await db
-      .select()
-      .from(Users)
-      .where(
-        eq(Users.userEmail, user?.primaryEmailAddress?.emailAddress ?? "")
-      );
-
-    if (!userResp[0]) {
-      const result = await db
-        .insert(Users)
-        .values({
-          userEmail: user?.primaryEmailAddress?.emailAddress,
-          userImage: user?.imageUrl,
-          userName: user?.fullName,
-        })
-        .returning({
-          userEmail: Users.userEmail,
-          userName: Users.userName,
-          userImage: Users.userImage,
-          credit: Users.credit,
-        });
-
-      setUserDetail(result[0]);
-    } else {
-      setUserDetail(userResp[0]);
-    }
-  };
   return (
     <UserDetailContext.Provider value={{ userDetail, setUserDetail }}>
       <NextUIProvider>

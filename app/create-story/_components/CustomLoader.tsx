@@ -1,20 +1,18 @@
-import React, { useEffect } from "react";
 import {
   Modal,
-  ModalContent,
-  ModalHeader,
   ModalBody,
-  ModalFooter,
+  ModalContent,
   useDisclosure,
 } from "@nextui-org/modal";
 import Image from "next/image";
+import { useEffect } from "react";
 
-const CustomLoader = ({ isLoading }: any) => {
+const CustomLoader = ({ isLoading }: { isLoading: boolean }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
     onOpen();
-  }, []);
+  }, [onOpen]);
 
   return (
     <div>
@@ -26,7 +24,7 @@ const CustomLoader = ({ isLoading }: any) => {
           isKeyboardDismissDisabled={true}
         >
           <ModalContent>
-            {(onClose) => (
+            {() => (
               <>
                 <ModalBody className="p-10 flex w-full items-center justify-center">
                   <Image

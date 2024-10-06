@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 import { db } from "@/config/db";
 import { StoryData } from "@/config/schema";
@@ -14,22 +16,22 @@ const ViewStory = ({ params }: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    getStory();
-  }, []);
+    const getStory = async () => {
+      setIsLoading(true);
+      const result = await db
+        .select()
+        .from(StoryData)
+        .where(eq(StoryData.storyId, params.id));
+      if (result.length > 0) {
+        setStory(result[0]);
+      } else {
+        setStory(undefined);
+      }
+      setIsLoading(false);
+    };
 
-  const getStory = async () => {
-    setIsLoading(true);
-    const result = await db
-      .select()
-      .from(StoryData)
-      .where(eq(StoryData.storyId, params.id));
-    if (result.length > 0) {
-      setStory(result[0]);
-    } else {
-      setStory(undefined);
-    }
-    setIsLoading(false);
-  };
+    getStory();
+  }, [params.id]);
 
   return (
     <div className="p-10 md:px-20 lg:px-40 h-[calc(100vh-64px)]">
@@ -78,7 +80,6 @@ const ViewStory = ({ params }: any) => {
               </div>
             </HTMLFlipBook>
           </div>
-
         </>
       )}
       <CustomLoader isLoading={isLoading} />
