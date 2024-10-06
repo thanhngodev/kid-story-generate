@@ -1,21 +1,23 @@
 import { IOptionField } from "../interfaces/app.interface";
 
+export const PAGE_ROUTE = {
+  HOME: "/",
+  CREATE_STORY: "/create-story",
+  EXPLORE_STORIES: "/explore-stories",
+};
+
 export const MENU_LIST = [
   {
     name: "Home",
-    path: "/",
+    path: PAGE_ROUTE.HOME,
   },
   {
     name: "Create Story",
-    path: "/create-story",
+    path: PAGE_ROUTE.CREATE_STORY,
   },
   {
     name: "Explore Stories",
-    path: "/explore-stories",
-  },
-  {
-    name: "Contact Us",
-    path: "/contact-us",
+    path: PAGE_ROUTE.EXPLORE_STORIES,
   },
 ];
 

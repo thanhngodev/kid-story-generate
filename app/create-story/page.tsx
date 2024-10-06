@@ -96,10 +96,10 @@ const CreateStory = () => {
 
   return (
     <div className="p-10 md:px-20 lg:px-40 ">
-      <h2 className="font-extrabold text-[36px] md:text-[70px] text-primary text-center ">
+      <h2 className="font-extrabold text-[36px] md:text-[40px] lg:text-[70px] text-primary text-center ">
         CREATE YOUR STORY
       </h2>
-      <p className="text-xl md:text-2xl text-primary text-center ">
+      <p className="text-lg md:text-xl lg:text-2xl text-primary text-center ">
         Unlock your creativity with AI: Craft stories like never before! Let our
         AI bring your imagination to life, one story at a time.
       </p>
@@ -113,7 +113,7 @@ const CreateStory = () => {
         <ImageStyle userSelection={onHandleUserSelection} />
       </div>
 
-      <div className="flex justify-end my-10">
+      <div className="flex justify-center md:justify-end my-10">
         <Button
           color="primary"
           className="p-10 text-2xl"
